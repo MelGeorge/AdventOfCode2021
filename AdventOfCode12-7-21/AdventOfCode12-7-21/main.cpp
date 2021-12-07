@@ -10,7 +10,6 @@
 #include <fstream>
 #include <vector>
 #include <string>
-#include <cstdlib>
 #include <numeric>
 #include <functional>
 #include "helpers.hpp"
@@ -27,7 +26,7 @@ int main() {
         { return std::abs(int(endLocation - currentLocation)); };
     
     // The linear cost is the triangular number sum(1..n) where n
-    // is the constantCost. The nth triangular number = n + 1 choose 2!
+    // is the constantCost. The nth triangular number = n + 1 C 2 = n(n+1)/2.
     auto linearCost = [&constantCost](int endLocation, int currentLocation)
         {
             int n = constantCost(endLocation, currentLocation);
@@ -58,9 +57,10 @@ void readInput()
 int calculateCost(std::function<int(int,int)> costFunction)
 {
     int leastCost = INT_MAX;
-    
+
     for(int endLocation = 0; endLocation < (int)crabsAtIndex.size(); ++endLocation)
     {
+        
         int currentCost = 0;
         for(int i = 0; i < crabsAtIndex.size(); ++i)
         {
