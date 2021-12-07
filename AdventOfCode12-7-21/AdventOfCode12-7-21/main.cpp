@@ -26,12 +26,12 @@ int main() {
     auto constantCost = [](int endLocation, int currentLocation)
         { return std::abs(int(endLocation - currentLocation)); };
     
-    auto linearCost = [](int endLocation, int currentLocation)
+    // The linear cost is the triangular number sum(1..n) where n
+    // is the constantCost. The nth triangular number = n + 1 choose 2!
+    auto linearCost = [&constantCost](int endLocation, int currentLocation)
         {
-            int cost = 0;
-            for(int v = 1; v <= std::abs(int(endLocation - currentLocation)); ++v)
-                cost += v;
-            return cost;
+            int n = constantCost(endLocation, currentLocation);
+            return n * (n + 1) / 2;
         };
     
     std::cout << "Part1: " << calculateCost(constantCost) << std::endl;
