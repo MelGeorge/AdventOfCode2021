@@ -91,9 +91,7 @@ void part1()
             least = f;
         }
     }
-    
-    cout << "Most: " << most.first << " : " << most.second << endl;
-    cout << "Least: " << least.first << " : " << least.second << endl;
+
     cout << "Part 1: " << most.second - least.second << endl;
 }
 
@@ -150,6 +148,7 @@ void part2()
         }
     }
     
+    // Divide by two because this method double-counts.
     unsigned long long m = most.second / 2 + (most.second % 2);
     unsigned long long l = least.second / 2 + (least.second % 2);
     cout << "Part 2: " << m - l << endl;
